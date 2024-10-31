@@ -23,19 +23,36 @@ const updateUserController = async(req, res, next)=> {
 
     try {
       const userToUpdate = await User.findById(userId);
-      if(!userToUpdate){
+      if (!userToUpdate) {
         throw new CustomError("User not found", 404);
       }
 
-      Object.assign(userToUpdate, updateData)
+      Object.assign(userToUpdate, updateData);
+
+      await userToUpdata.save();
+
+      res.status(200).json({ massage: "User updated successfully ", user: userToUpdate});
     } catch (error) {
         next(erro);
     }
 };
 
 const buyCredit = async(req, res, next)=> {
+    const {userId} = req.params;
+    const updateData = req.body;
     try {
-        
+      const userToUpdate = await User.findById(userId);
+      if (!userToUpdate) {
+        throw new CustomError("User not found", 404);
+      }
+
+      if(updateData.hasOwnProperty("credit")){
+          userToUpdate.credit = updateData.credit;
+      }
+
+      await userToUpdate.save();
+
+      res.status(200).json({ massage: "Credit updated successfully ", user: userToUpdate});
     } catch (error) {
         next(erro);
     }
