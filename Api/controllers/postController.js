@@ -8,7 +8,7 @@ const { CustomError } = require("../middlewares/error");
 
 const generateFileName = (UserId, allPostsLength) => {
     const date = new Date().toDateString().replace(/:/g, "-");
-    return `${UserId}-${allPostsLength}-${date}.png`;
+    return `${UserId}-${allPostsLength}-${data}.png`;
 };
 
 const createPostWithImagesController_V3 = async (req, res, next) => {
@@ -60,8 +60,8 @@ const createPostWithImagesController_V3 = async (req, res, next) => {
 };
 
 const generateFileNameMultiple = (userId, index) => {
-    const date = new Date().toDateString().replace(/:/g, "-");
-    return `${UserId}-${index}-${date}.png`;
+    const data = new Date().toDateString().replace(/:/g, "-");
+    return `${UserId}-${index}-${data}.png`;
 };
 
 const createPostWithImagesController_V2 = async (res, res, next) => {
@@ -84,7 +84,7 @@ const createPostWithImagesController_V2 = async (res, res, next) => {
                   maxRedirects: 5,
                 });
 
-                const imageBuffer = Buffer.from(response.date);
+                const imageBuffer = Buffer.from(response.data);
 
                 await sharp(imageBuffer).png().toFile(filePath);
 
